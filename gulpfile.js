@@ -5,6 +5,7 @@ var uglify = require('gulp-uglify');
 var sass = require('gulp-sass');
 var uglify = require('gulp-uglify'); // Newly Added 
 var jshint = require('gulp-jshint'); // Newly Added 
+var imagemin = require('gulp-imagemin'); // Newly Added
 
 // Styles Task
 gulp.task('styles', function() {
@@ -24,4 +25,16 @@ gulp.task ('scripts', function(){
         .pipe(concat('all.js'))
         .pipe(uglify())
         .pipe(gulp.dest('dist'));
+});
+
+// Image Task
+
+gulp.task('images',function(){
+    return gulp.src('app/images/*')
+        .pipe(imagemin())
+        .pipe(gulp.dest('dist/img'));
+});
+
+gulp.task('watch', function(){
+    
 });
