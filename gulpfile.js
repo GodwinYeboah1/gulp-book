@@ -30,11 +30,18 @@ gulp.task ('scripts', function(){
 // Image Task
 
 gulp.task('images',function(){
-    return gulp.src('app/images/*')
+    return gulp.src('app/images/*js')
         .pipe(imagemin())
         .pipe(gulp.dest('dist/img'));
 });
 
-gulp.task('watch', function(){
-    
-});
+// Watch Task
+
+gulp.task('watch', function() {
+    gulp.watch('app/css/*.css', gulp.series('styles'));
+    gulp.watch('app/js/*.js', gulp.series('scripts'));
+    gulp.watch('app/images/*', gulp.series('images'));
+  });
+
+// Default Task
+gulp.task('default',gulp.parallel('styles','scripts','images','watch'));
